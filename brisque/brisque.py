@@ -5,8 +5,7 @@ from ctypes import c_double
 import cv2
 import numpy as np
 from scipy.special import gamma
-import svmutil
-from svmutil import gen_svm_nodearray
+from libsvm import svmutil
 
 from brisque.utilities import root_path
 
@@ -177,7 +176,7 @@ class BRISQUE(object):
         :param scaled_feature: Scaled brisque feature.
         :type scaled_feature: np.ndarray
         """
-        x, idx = gen_svm_nodearray(
+        x, idx = svmutil.gen_svm_nodearray(
             scaled_feature.tolist(),
             isKernel=(self._model.param.kernel_type == 'PRECOMPUTED')
         )
